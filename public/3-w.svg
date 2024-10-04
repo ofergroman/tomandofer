@@ -1,39 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 180">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
     <!-- Scroll base with shadow -->
-    <path d="M15 15 C15 15, 105 15, 105 15
-           C115 15, 118 20, 118 25
-           L118 155
-           C118 160, 115 165, 105 165
-           L15 165
-           C5 165, 2 160, 2 155
-           L2 25
-           C2 20, 5 15, 15 15"
+    <path d="M10 10 C10 10, 90 10, 90 10
+           C95 10, 98 15, 98 20
+           L98 100
+           C98 105, 95 110, 90 110
+           L10 110
+           C5 110, 2 105, 2 100
+           L2 20
+           C2 15, 5 10, 10 10"
           fill="#f4d03f" stroke="#8b4513" stroke-width="2"/>
 
     <!-- Scroll edges/rolls -->
-    <path d="M2 25 C2 20, 5 15, 15 15
-           Q10 22, 10 25 Z"
+    <path d="M2 20 C2 15, 5 10, 10 10
+           Q7 17, 7 20 Z"
           fill="#d4b130"/>
-    <path d="M118 25 C118 20, 115 15, 105 15
-           Q110 22, 110 25 Z"
+    <path d="M98 20 C98 15, 95 10, 90 10
+           Q93 17, 93 20 Z"
           fill="#d4b130"/>
-    <path d="M2 155 C2 160, 5 165, 15 165
-           Q10 158, 10 155 Z"
+    <path d="M2 100 C2 105, 5 110, 10 110
+           Q7 103, 7 100 Z"
           fill="#d4b130"/>
-    <path d="M118 155 C118 160, 115 165, 105 165
-           Q110 158, 110 155 Z"
+    <path d="M98 100 C98 105, 95 110, 90 110
+           Q93 103, 93 100 Z"
           fill="#d4b130"/>
 
-    <!-- Decorative lines -->
-    <path d="M20 45 L100 45" stroke="#8b4513" stroke-width="1" opacity="0.3"/>
-    <path d="M20 135 L100 135" stroke="#8b4513" stroke-width="1" opacity="0.3"/>
-
-    <!-- Text "3 W" -->
-    <text x="60" y="98"
+    <!-- Stylized 3 -->
+    <text x="50" y="89"
           font-family="serif"
-          font-size="45"
+          font-size="95"
           font-weight="bold"
           text-anchor="middle"
           fill="#8b4513"
-          style="font-style: italic;">3 W</text>
+          style="font-style: italic;">3</text>
 </svg>
