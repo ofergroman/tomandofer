@@ -9,7 +9,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     const game: Game = {
         content: "",
         starter: 'This is how the story starts',
-        players: [{id: 'gay', name: 'Tom'}, {id: 'no_gay', name: 'Ofer'}],
+        players: [{id: 'tom', name: 'Tom'}, {id: 'ofer', name: 'Ofer'}],
         state: GameState.InGame,
         timePerTurn: 0,
         totalGameTime: 0
