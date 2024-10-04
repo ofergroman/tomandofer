@@ -1,5 +1,15 @@
-function PlayersList(): React.JSX.Element {
-    return <div>Players list</div>
-}
+export type PlayerListProps = ChildProps & { players: Player[] }
 
-export default PlayersList;
+export default function PlayersList({players} : PlayerListProps): React.JSX.Element {
+    return (
+        <ul>
+            {players.map((player) => {
+                return (
+                    <li key={player.id} className="flex flex-col">
+                        <div>{player.name}</div>
+                    </li>
+                )
+            })}
+        </ul>
+    )
+}

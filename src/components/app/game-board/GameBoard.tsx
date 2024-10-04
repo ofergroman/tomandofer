@@ -5,16 +5,18 @@ import {GameState} from "../consts.ts";
 import {useEffect} from "react";
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
+    // TODO: Is this something we want to create in a class?
     const game: Game = {
         content: "",
         starter: 'This is how the story starts',
-        players: [],
+        players: [{id: 'gay', name: 'Tom'}, {id: 'no_gay', name: 'Ofer'}],
         state: GameState.InGame,
         timePerTurn: 0,
         totalGameTime: 0
     };
-    useEffect(() => {
+    useEffect(() => { // WHY? For socket/server communication?
         if (game.starter != null) {
+            // TODO: Starter should come from either a dictionary, an AI...
             game.content = game.starter;
         }
     }, []);
