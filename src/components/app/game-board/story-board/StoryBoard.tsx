@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useEffect, useRef, useState} from "react";
 
-export type StoryBoardProps = ChildProps & { game: Game };
+export type StoryBoardProps = ChildProps & { game: Game, updatePlayerTurn: () => void };
 
-function StoryBoard({className, game}: StoryBoardProps): React.JSX.Element {
+function StoryBoard({className, game, updatePlayerTurn}: StoryBoardProps): React.JSX.Element {
     const [submitted, setSubmitted] = useState<string>('');
     const [activeText, setActiveText] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
@@ -12,11 +12,15 @@ function StoryBoard({className, game}: StoryBoardProps): React.JSX.Element {
     }, []);
 
     const submitText= ()=>{
+        if (!activeText) {
+            return
+        }
+
         const aggregatedText = `${submitted} ${activeText.trim()}`;
         setActiveText('');
         setSubmitted(aggregatedText);
         inputRef?.current?.focus();
-
+        updatePlayerTurn();
     }
     return <div className={className}>
         <div className='flex'>

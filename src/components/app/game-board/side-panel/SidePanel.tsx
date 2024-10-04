@@ -5,7 +5,7 @@ import PlayersList from "./players-list/PlayersList.tsx";
 export type SidePanelProps = ChildProps & { game: Game}
 function SidePanel({className, game}: SidePanelProps): React.JSX.Element {
     return (<div className={className}>
-        <PlayersList players={game.players}></PlayersList>
+        <PlayersList players={game.players} activePlayer={game.activePlayer}></PlayersList>
         <TurnManager></TurnManager>
     </div>)
 }

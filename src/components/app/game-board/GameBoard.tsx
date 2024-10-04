@@ -1,28 +1,45 @@
 import * as React from "react";
 import SidePanel from "./side-panel/SidePanel.tsx";
 import StoryBoard from "./story-board/StoryBoard.tsx";
+import {ChildProps, Game, Player} from "../types.ts";
 import {GameState} from "../consts.ts";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
     // TODO: Is this something we want to create in a class?
-    const game: Game = {
+    const [game, setGame] = useState<Game>({
         content: "",
         starter: 'This is how the story starts',
         players: [{id: 'tom', name: 'Tom'}, {id: 'ofer', name: 'Ofer'}],
+        activePlayer: null,
         state: GameState.InGame,
         timePerTurn: 0,
         totalGameTime: 0
-    };
-    useEffect(() => { // WHY? For socket/server communication?
-        if (game.starter != null) {
-            // TODO: Starter should come from either a dictionary, an AI...
-            game.content = game.starter;
-        }
+    });
+    function updatePlayerTurn() {
+        setGame((prevGame) => {
+            const currentPlayer = prevGame.activePlayer;
+            const currentPlayerIndex = prevGame.players.indexOf(currentPlayer!); // currentPlayer should never be null here.
+            const nextPlayerIndex = (currentPlayerIndex + 1) % prevGame.players.length;
+            return {
+                ...prevGame,
+                activePlayer: prevGame.players[nextPlayerIndex]
+            };
+        });
+    }
+
+    // useEffect to initialize the game
+    useEffect(() => {
+        setGame((prevGame) => ({
+            ...prevGame,
+            content: prevGame.starter || prevGame.content,
+            activePlayer: prevGame.players[0]  // Set the first player as active
+        }));
     }, []);
+
     return (<div className= {className}>
             <SidePanel className="flex flex-4" game={game}></SidePanel>
-            <StoryBoard className="flex flex-2 max-2xl board-container flex-col" game={game}></StoryBoard>
+            <StoryBoard className="flex flex-2 max-2xl board-container flex-col" game={game} updatePlayerTurn={updatePlayerTurn}></StoryBoard>
     </div>)
 }
 

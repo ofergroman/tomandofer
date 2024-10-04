@@ -3,8 +3,6 @@ declare global {
     export interface Player {
         id: string;
         name: string;
-        isActive: boolean;
-        ActiveGameId?: string;
     }
 
     export interface Game {
@@ -14,7 +12,7 @@ declare global {
         starter?: string;
         state: GameState;
         players: Player[];
-        activePlayerId?: string;
+        activePlayer: Player;
         totalGameTime: number;
         timePerTurn: number
     }
