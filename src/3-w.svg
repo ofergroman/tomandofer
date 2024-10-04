@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
+    <!-- Scroll base with shadow -->
+    <path d="M10 10 C10 10, 90 10, 90 10
+           C95 10, 98 15, 98 20
+           L98 100
+           C98 105, 95 110, 90 110
+           L10 110
+           C5 110, 2 105, 2 100
+           L2 20
+           C2 15, 5 10, 10 10"
+          fill="#f4d03f" stroke="#8b4513" stroke-width="2"/>
+
+    <!-- Scroll edges/rolls -->
+    <path d="M2 20 C2 15, 5 10, 10 10
+           Q7 17, 7 20 Z"
+          fill="#d4b130"/>
+    <path d="M98 20 C98 15, 95 10, 90 10
+           Q93 17, 93 20 Z"
+          fill="#d4b130"/>
+    <path d="M2 100 C2 105, 5 110, 10 110
+           Q7 103, 7 100 Z"
+          fill="#d4b130"/>
+    <path d="M98 100 C98 105, 95 110, 90 110
+           Q93 103, 93 100 Z"
+          fill="#d4b130"/>
+
+    <!-- Stylized 3 -->
+    <text x="50" y="89"
+          font-family="serif"
+          font-size="95"
+          font-weight="bold"
+          text-anchor="middle"
+          fill="#8b4513"
+          style="font-style: italic;">3</text>
+</svg>

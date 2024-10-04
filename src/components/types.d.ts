@@ -11,6 +11,7 @@ declare global {
         name?: string;
         id?: string;
         content: string;
+        starter?: string;
         state: GameState;
         players: Player[];
         activePlayerId?: string;
