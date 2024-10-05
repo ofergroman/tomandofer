@@ -2,26 +2,35 @@ import React, {ChangeEvent, useEffect, useRef, useState} from "react";
 
 export type StoryBoardProps = ChildProps & { content: string, updatePlayerTurn: () => void };
 
-function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): React.JSX.Element {
+export default function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): React.JSX.Element {
     const [submitted, setSubmitted] = useState<string>('');
     const [activeText, setActiveText] = useState<string>('');
+    const [inputDisabled, setInputDisabled] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    document.onclick = ()=>  inputRef && inputRef.current?.focus();
 
     useEffect(() => {
         setSubmitted(content);
     }, [content]);
+    useEffect(() => {
+        const threeWordsPattern:RegExp = /^\S+ \S+ \S+$/;
+        const currentInputValue=  inputRef.current?.value || '';
+        setInputDisabled(!threeWordsPattern.test(currentInputValue))
+    }, [inputRef.current?.value]);
 
     const submitText = () => {
         if (!activeText) {
             return
         }
-
         const aggregatedText = `${submitted} ${activeText.trim()}`;
         setActiveText('');
         setSubmitted(aggregatedText);
         inputRef?.current?.focus();
         updatePlayerTurn();
+
     }
+
     return <div className={className}>
         <div className='flex flex-col h-3/4 w-full items-center'>
             <div className='text-container w-full border-2 h-3/4 flex flex-1 text-xl p-5'>
@@ -35,11 +44,10 @@ function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): Re
                     className='ml-2 bg-transparent h-7 w-fit text-xl'
                 ></input>
             </div>
-            <button onClick={submitText} className='w-56 mt-6'>Submit my Words</button>
+            <button disabled={inputDisabled} onClick={submitText} className='w-56 mt-6 isabled:bg-gray-400
+             disabled:cursor-not-allowed disabled:opacity-50'>Submit my Words</button>
         </div>
 
 
     </div>;
 }
-
-export default StoryBoard;
