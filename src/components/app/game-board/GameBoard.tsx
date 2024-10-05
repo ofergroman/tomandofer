@@ -37,10 +37,11 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     }, []);
 
     return (<div className= {className}>
-            <SidePanel className='flex basis-1/3 flex-col'
+            <SidePanel className='flex basis-1/3 flex-col justify-center'
                        game={game}>
             </SidePanel>
-            <StoryBoard className='flex basis-2/3 border-2 max-2xl board-container flex-col'
+            <StoryBoard className='flex basis-2/3 border-2 max-2xl board-container flex-col p-6
+             relative justify-center align-middle items-center'
                         content={game.content}
                         updatePlayerTurn={updatePlayerTurn}>
             </StoryBoard>

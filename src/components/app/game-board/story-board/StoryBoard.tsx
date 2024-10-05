@@ -11,7 +11,7 @@ function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): Re
         setSubmitted(content);
     }, [content]);
 
-    const submitText= ()=>{
+    const submitText = () => {
         if (!activeText) {
             return
         }
@@ -23,19 +23,22 @@ function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): Re
         updatePlayerTurn();
     }
     return <div className={className}>
-        <div className='flex'>
-        <div>{submitted}</div>
-        <input
-            ref={inputRef}
-            autoFocus={true}
-            type='text'
-            value={activeText}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setActiveText(e.target.value)}
-            className='ml-2 bg-transparent w-fit'
-        ></input>
+        <div className='flex flex-col h-3/4 items-center'>
+            <div className='text-container w-full border-2 h-3/4 flex flex-1 text-xl p-5'>
+                <div>{submitted}</div>
+                <input
+                    ref={inputRef}
+                    autoFocus={true}
+                    type='text'
+                    value={activeText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setActiveText(e.target.value)}
+                    className='ml-2 bg-transparent h-7 w-fit text-xl'
+                ></input>
+            </div>
+            <button onClick={submitText} className='w-56 mt-6'>Submit my Words</button>
         </div>
 
-        <button onClick={submitText} className='bg-transparent'>Submit my Words</button>
+
     </div>;
 }
 
