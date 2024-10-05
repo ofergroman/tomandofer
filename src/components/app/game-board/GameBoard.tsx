@@ -1,14 +1,13 @@
-import * as React from "react";
-import SidePanel from "./side-panel/SidePanel.tsx";
-import StoryBoard from "./story-board/StoryBoard.tsx";
-import {ChildProps, Game, Player} from "../types.ts";
-import {GameState} from "../consts.ts";
-import {useEffect, useState} from "react";
+import * as React from 'react';
+import SidePanel from './side-panel/SidePanel.tsx';
+import StoryBoard from './story-board/StoryBoard.tsx';
+import {GameState} from '../consts.ts';
+import {useEffect, useState} from 'react';
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
     // TODO: Is this something we want to create in a class?
     const [game, setGame] = useState<Game>({
-        content: "",
+        content: '',
         starter: 'This is how the story starts',
         players: [{id: 'tom', name: 'Tom'}, {id: 'ofer', name: 'Ofer'}],
         activePlayer: null,
@@ -17,7 +16,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         totalGameTime: 0
     });
     function updatePlayerTurn() {
-        setGame((prevGame) => {
+        setGame((prevGame: Game) => {
             const currentPlayer = prevGame.activePlayer;
             const currentPlayerIndex = prevGame.players.indexOf(currentPlayer!); // currentPlayer should never be null here.
             const nextPlayerIndex = (currentPlayerIndex + 1) % prevGame.players.length;
@@ -30,7 +29,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
 
     // useEffect to initialize the game
     useEffect(() => {
-        setGame((prevGame) => ({
+        setGame((prevGame: Game) => ({
             ...prevGame,
             content: prevGame.starter || prevGame.content,
             activePlayer: prevGame.players[0]  // Set the first player as active
@@ -38,8 +37,13 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     }, []);
 
     return (<div className= {className}>
-            <SidePanel className="flex flex-4" game={game}></SidePanel>
-            <StoryBoard className="flex flex-2 max-2xl board-container flex-col" game={game} updatePlayerTurn={updatePlayerTurn}></StoryBoard>
+            <SidePanel className='flex basis-1/3 flex-col'
+                       game={game}>
+            </SidePanel>
+            <StoryBoard className='flex basis-2/3 border-2 max-2xl board-container flex-col'
+                        content={game.content}
+                        updatePlayerTurn={updatePlayerTurn}>
+            </StoryBoard>
     </div>)
 }
 

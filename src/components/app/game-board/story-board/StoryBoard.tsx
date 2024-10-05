@@ -1,15 +1,15 @@
 import React, {ChangeEvent, useEffect, useRef, useState} from "react";
 
-export type StoryBoardProps = ChildProps & { game: Game, updatePlayerTurn: () => void };
+export type StoryBoardProps = ChildProps & { content: string, updatePlayerTurn: () => void };
 
-function StoryBoard({className, game, updatePlayerTurn}: StoryBoardProps): React.JSX.Element {
+function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): React.JSX.Element {
     const [submitted, setSubmitted] = useState<string>('');
     const [activeText, setActiveText] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        setSubmitted(game.content);
-    }, []);
+        setSubmitted(content);
+    }, [content]);
 
     const submitText= ()=>{
         if (!activeText) {

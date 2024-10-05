@@ -12,7 +12,7 @@ declare global {
         starter?: string;
         state: GameState;
         players: Player[];
-        activePlayer: Player;
+        activePlayer: Player| null;
         totalGameTime: number;
         timePerTurn: number
     }

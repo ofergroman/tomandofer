@@ -4,9 +4,8 @@ import GameBoard from "./game-board/GameBoard.tsx";
 
 
 function App(): React.JSX.Element {
-  return <div>
-      <GameBoard className="flex"></GameBoard>
-  </div>
+  return <GameBoard className="flex w-full h-full"></GameBoard>;
+
 
 }
 
