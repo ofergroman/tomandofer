@@ -13,10 +13,9 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
     useEffect(() => {
         setSubmitted(content);
     }, [content]);
+
     useEffect(() => {
-        const threeWordsPattern:RegExp = /^\S+ \S+ \S+$/;
-        const currentInputValue=  inputRef.current?.value || '';
-        setInputDisabled(!threeWordsPattern.test(currentInputValue))
+        onInputChanged(inputRef.current?.value);
     }, [inputRef.current?.value]);
 
     const submitText = () => {
@@ -29,6 +28,11 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
         inputRef?.current?.focus();
         updatePlayerTurn();
 
+    }
+
+    const onInputChanged = (currentInputValue: string) => {
+        const threeWordsPattern:RegExp = /^\S+ \S+ \S+$/;
+        setInputDisabled(!threeWordsPattern.test(currentInputValue))
     }
 
     return <div className={className}>
@@ -47,7 +51,5 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
             <button disabled={inputDisabled} onClick={submitText} className='w-56 mt-6 isabled:bg-gray-400
              disabled:cursor-not-allowed disabled:opacity-50'>Submit my Words</button>
         </div>
-
-
     </div>;
 }

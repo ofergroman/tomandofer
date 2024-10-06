@@ -13,8 +13,9 @@ declare global {
         state: GameState;
         players: Player[];
         activePlayer: Player| null;
+        nextPlayer: Player| null;
         totalGameTime: number;
-        timePerTurn: number
+        currentPlayerTime?: number
     }
     export interface ChildProps {
         className?: string;

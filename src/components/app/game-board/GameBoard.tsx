@@ -11,18 +11,20 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         starter: 'This is how the story starts',
         players: [{id: 'tom', name: 'Tom'}, {id: 'ofer', name: 'Ofer'}],
         activePlayer: null,
+        nextPlayer: null,
         state: GameState.InGame,
-        timePerTurn: 0,
+        currentPlayerTime: 0, //TBD
         totalGameTime: 0
     });
     function updatePlayerTurn() {
         setGame((prevGame: Game) => {
             const currentPlayer = prevGame.activePlayer;
-            const currentPlayerIndex = prevGame.players.indexOf(currentPlayer!); // currentPlayer should never be null here.
+            const currentPlayerIndex = prevGame.players.indexOf(currentPlayer!);
             const nextPlayerIndex = (currentPlayerIndex + 1) % prevGame.players.length;
             return {
                 ...prevGame,
-                activePlayer: prevGame.players[nextPlayerIndex]
+                activePlayer: prevGame.players[nextPlayerIndex],
+                nextPlayer: prevGame.players[(nextPlayerIndex + 1) % prevGame.players.length]
             };
         });
     }
@@ -32,13 +34,14 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         setGame((prevGame: Game) => ({
             ...prevGame,
             content: prevGame.starter || prevGame.content,
-            activePlayer: prevGame.players[0]  // Set the first player as active
+            activePlayer: prevGame.players[0],
+            nextPlayer: prevGame.players[1]
         }));
     }, []);
 
     return (<div className= {className}>
             <SidePanel className='flex basis-1/3 flex-col justify-center'
-                       game={game}>
+                       game={game} updatePlayerTurn={updatePlayerTurn}>
             </SidePanel>
             <StoryBoard className='flex basis-2/3 border-2 max-2xl board-container flex-col p-6
              relative justify-center align-middle items-center'
