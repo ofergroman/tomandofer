@@ -1,11 +1,11 @@
-import React, {useEffect, useContext, useRef} from 'react';
-import {TimerContext} from "../../../contexts/timer.context.tsx";
+import React, {useEffect, useRef} from 'react';
+import {useTimer} from "../../../contexts/timer.context.tsx";
 import {TURN_TIME} from "../../../consts.ts";
 
 export type GameStatusProps = ChildProps & { activePlayer: Player, nextPlayer: Player, updatePlayerTurn: () => void };
 
 export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} : GameStatusProps): React.JSX.Element {
-    const {timer, startCountdown} = useContext(TimerContext);
+    const {timer, startCountdown} = useTimer();
     const prevTimerRef = useRef<number | null>(null);
 
     useEffect(() => {
