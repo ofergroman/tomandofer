@@ -29,10 +29,9 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
     }
 
     const startCountdown = useCallback(() => {
-        destroyInterval()
+        destroyInterval();
         setTimer(initialTime);
         intervalRef.current = setInterval(() => {
-            console.log("timer")
                 setTimer(prevTimer => {
                     if (prevTimer <= 1) {
                         if (intervalRef.current) {
