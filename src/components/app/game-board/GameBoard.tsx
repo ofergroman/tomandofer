@@ -2,7 +2,7 @@ import * as React from 'react';
 import SidePanel from './side-panel/SidePanel.tsx';
 import StoryBoard from './story-board/StoryBoard.tsx';
 import {GameState} from '../consts.ts';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
     // TODO: Is this something we want to create in a class?
@@ -16,7 +16,8 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         currentPlayerTime: 0, //TBD
         totalGameTime: 0
     });
-    function updatePlayerTurn() {
+
+    const updatePlayerTurn =  useCallback(()=>{
         setGame((prevGame: Game) => {
             const currentPlayer = prevGame.activePlayer;
             const currentPlayerIndex = prevGame.players.indexOf(currentPlayer!);
@@ -27,7 +28,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
                 nextPlayer: prevGame.players[(nextPlayerIndex + 1) % prevGame.players.length]
             };
         });
-    }
+    }, [setGame])
 
     // useEffect to initialize the game
     useEffect(() => {
@@ -41,7 +42,8 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
 
     return (<div className= {className}>
             <SidePanel className='flex basis-1/3 flex-col justify-center'
-                       game={game} updatePlayerTurn={updatePlayerTurn}>
+                       game={game}
+                       updatePlayerTurn={updatePlayerTurn}>
             </SidePanel>
             <StoryBoard className='flex basis-2/3 border-2 max-2xl board-container flex-col p-6
              relative justify-center align-middle items-center'

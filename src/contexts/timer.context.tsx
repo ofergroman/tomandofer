@@ -1,8 +1,8 @@
-import React, {createContext, useContext, ReactNode, useCallback, useEffect, useState} from 'react';
+import React, {createContext, useContext, ReactNode, useCallback, useState, useMemo, useRef} from 'react';
 
 export interface TimerContextProps {
     timer: number;
-    startCountdown: (startTime: number) => void;
+    startCountdown: () => void;
 }
 
 const TimerContext = createContext<TimerContextProps | undefined>(undefined);
@@ -16,34 +16,41 @@ export const useTimer = () => {
 }
 
 export type TimerProviderProps = { children: ReactNode; initialTime: number; }
+
+
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialTime }) => {
     const [timer, setTimer] = useState(initialTime);
-    const [isRunning, setIsRunning] = useState(false);
+    const intervalRef = useRef<number | null>(null);
+
+    const destroyInterval = ()=> {
+        if(intervalRef.current){
+            clearInterval(intervalRef.current);
+        }
+    }
 
     const startCountdown = useCallback(() => {
+        destroyInterval()
         setTimer(initialTime);
-        setIsRunning(true);
-    }, [initialTime]);
-
-    useEffect(() => {
-        if (isRunning && timer > 0) {
-            const interval = setInterval(() => {
+        intervalRef.current = setInterval(() => {
+            console.log("timer")
                 setTimer(prevTimer => {
                     if (prevTimer <= 1) {
-                        setIsRunning(false);
-                        clearInterval(interval);
-                        return 0;
+                        if (intervalRef.current) {
+                            destroyInterval()
+                            return 0;
+                        }
                     }
                     return prevTimer - 1;
                 });
             }, 1000);
 
-            return () => clearInterval(interval);
-        }
-    }, [isRunning, timer]);
+            return destroyInterval;
+    }, [initialTime]);
+
+    const value = useMemo(() => ({ timer, startCountdown }), [timer, startCountdown]);
 
   return (
-    <TimerContext.Provider value={{ timer, startCountdown }}>
+    <TimerContext.Provider value={value}>
       {children}
     </TimerContext.Provider>
   );

@@ -1,26 +1,24 @@
-import React, {useEffect, useRef} from 'react';
-import {useTimer} from "../../../contexts/timer.context.tsx";
-import {TURN_TIME} from "../../../consts.ts";
+import React, {useEffect, useMemo} from 'react';
+import {useTimer} from "../../../../../contexts/timer.context";
 
 export type GameStatusProps = ChildProps & { activePlayer: Player, nextPlayer: Player, updatePlayerTurn: () => void };
 
 export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} : GameStatusProps): React.JSX.Element {
     const {timer, startCountdown} = useTimer();
-    const prevTimerRef = useRef<number | null>(null);
+
+    const isTimerEnd  = useMemo(() => timer === 0, [timer]);
 
     useEffect(() => {
         if (activePlayer) {
-            startCountdown(TURN_TIME);
+            startCountdown();
         }
     }, [activePlayer, startCountdown]);
 
     useEffect(() => {
-        if (timer === 0 && prevTimerRef.current !== 0) {
+        if (isTimerEnd) {
             updatePlayerTurn();
         }
-        // TODO: Is this a proper way to handle this?
-        prevTimerRef.current = timer;
-    }, [timer, updatePlayerTurn]);
+    }, [isTimerEnd, updatePlayerTurn]);
 
     return (
         <div className='flex flex-col p-5 border-2'>

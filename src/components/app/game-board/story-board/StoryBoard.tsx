@@ -1,22 +1,17 @@
-import React, {ChangeEvent, useEffect, useRef, useState} from "react";
+import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from "react";
 
 export type StoryBoardProps = ChildProps & { content: string, updatePlayerTurn: () => void };
 
 export default function StoryBoard({className, content, updatePlayerTurn}: StoryBoardProps): React.JSX.Element {
     const [submitted, setSubmitted] = useState<string>('');
     const [activeText, setActiveText] = useState<string>('');
-    const [inputDisabled, setInputDisabled] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    document.onclick = ()=>  inputRef && inputRef.current?.focus();
+    document.onclick = () =>  inputRef && inputRef.current?.focus();
 
     useEffect(() => {
         setSubmitted(content);
     }, [content]);
-
-    useEffect(() => {
-        onInputChanged(inputRef.current?.value);
-    }, [inputRef.current?.value]);
 
     const submitText = () => {
         if (!activeText) {
@@ -30,10 +25,10 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
 
     }
 
-    const onInputChanged = (currentInputValue: string) => {
+    const inputDisabled = useMemo(() => {
         const threeWordsPattern:RegExp = /^\S+ \S+ \S+$/;
-        setInputDisabled(!threeWordsPattern.test(currentInputValue))
-    }
+        return !threeWordsPattern.test(activeText)
+    }, [activeText])
 
     return <div className={className}>
         <div className='flex flex-col h-3/4 w-full items-center'>
