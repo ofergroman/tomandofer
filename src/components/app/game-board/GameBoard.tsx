@@ -18,12 +18,12 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         totalGameTime: 0
     });
 
-    const setOpener: (game: Game) => string = useCallback((game:Game) => {
+    const getOpener: (game: Game)=> string = useCallback((game:Game) => {
         const category = game.openerCategory || 'random';
         const selectedIndex = Math.floor(Math.random() * openings[category].length);
 
         return openings[category][selectedIndex];
-    }, [setGame]);
+    },[]);
 
     const updatePlayerTurn =  useCallback(()=>{
         setGame((prevGame: Game) => {
@@ -43,11 +43,11 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     useEffect(() => {
         setGame((prevGame: Game) => ({
             ...prevGame,
-            content: prevGame.starter || setOpener(prevGame),
+            content: prevGame.starter || getOpener(prevGame),
             activePlayer: prevGame.players[0],
             nextPlayer: prevGame.players[1]
         }));
-    }, []);
+    }, [getOpener]);
 
     return (<div className= {className}>
             <SidePanel className='flex basis-1/3 flex-col justify-center'

@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo} from 'react';
 import {useTimer} from "../../../../../contexts/timer.context";
 
-export type GameStatusProps = ChildProps & { activePlayer: Player, nextPlayer: Player, updatePlayerTurn: () => void };
+export type GameStatusProps = ChildProps & { activePlayer: Player| null, nextPlayer: Player| null, updatePlayerTurn: () => void };
 
 export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} : GameStatusProps): React.JSX.Element {
     const {timer, startCountdown} = useTimer();
