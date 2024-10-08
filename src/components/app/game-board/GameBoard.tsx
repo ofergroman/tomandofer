@@ -3,12 +3,13 @@ import SidePanel from './side-panel/SidePanel.tsx';
 import StoryBoard from './story-board/StoryBoard.tsx';
 import {GameState} from '../consts.ts';
 import {useCallback, useEffect, useState} from 'react';
+import openings from '../../../assets/openings.json';
 
 function GameBoard({ className }: ChildProps): React.JSX.Element{
     // TODO: Is this something we want to create in a class?
     const [game, setGame] = useState<Game>({
         content: '',
-        starter: 'This is how the story starts',
+        openerCategory: 'random',
         players: [{id: 'tom', name: 'Tom'}, {id: 'ofer', name: 'Ofer'}],
         activePlayer: null,
         nextPlayer: null,
@@ -16,6 +17,13 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
         currentPlayerTime: 0, //TBD
         totalGameTime: 0
     });
+
+    const setOpener: (game: Game) => string = useCallback((game:Game) => {
+        const category = game.openerCategory || 'random';
+        const selectedIndex = Math.floor(Math.random() * openings[category].length);
+
+        return openings[category][selectedIndex];
+    }, [setGame]);
 
     const updatePlayerTurn =  useCallback(()=>{
         setGame((prevGame: Game) => {
@@ -25,7 +33,8 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
             return {
                 ...prevGame,
                 activePlayer: prevGame.players[nextPlayerIndex],
-                nextPlayer: prevGame.players[(nextPlayerIndex + 1) % prevGame.players.length]
+                nextPlayer: prevGame.players[(nextPlayerIndex + 1) % prevGame.players.length],
+
             };
         });
     }, [setGame])
@@ -34,7 +43,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     useEffect(() => {
         setGame((prevGame: Game) => ({
             ...prevGame,
-            content: prevGame.starter || prevGame.content,
+            content: prevGame.starter || setOpener(prevGame),
             activePlayer: prevGame.players[0],
             nextPlayer: prevGame.players[1]
         }));

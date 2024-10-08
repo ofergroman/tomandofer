@@ -1,4 +1,4 @@
-import {GameState} from "./app/consts.ts";
+import {GameState, OpenerCategory} from "./app/consts.ts";
 declare global {
     export interface Player {
         id: string;
@@ -9,6 +9,7 @@ declare global {
         name?: string;
         id?: string;
         content: string;
+        openerCategory?: OpenerCategory;
         starter?: string;
         state: GameState;
         players: Player[];
