@@ -4,4 +4,4 @@ export enum GameState {
     Ended,
 }
 
-export const TURN_TIME = 10; // SETTING 10 FOR DEBUGGING PURPOSES
+export const TURN_TIME = 10; // SETTING 10 FOR DEBUGGING PURPOSES;

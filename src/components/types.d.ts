@@ -9,6 +9,7 @@ declare global {
         name?: string;
         id?: string;
         content: string;
+        openerCategory?: 'random'| 'mystery' |'funny';
         starter?: string;
         state: GameState;
         players: Player[];
