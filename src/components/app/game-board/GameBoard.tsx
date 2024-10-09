@@ -10,7 +10,7 @@ function GameBoard({ className }: ChildProps): React.JSX.Element{
     const [game, setGame] = useState<Game>({
         content: '',
         openerCategory: 'random',
-        players: [{id: 'tom', name: 'Tom'}, {id: 'ofer', name: 'Ofer'}],
+        players: [{id: 'tom', name: 'Tom', color: 'bg-yellow-400'}, {id: 'ofer', name: 'Ofer', color: 'bg-blue-600'}], // TBD: Color mechanism
         activePlayer: null,
         nextPlayer: null,
         state: GameState.InGame,

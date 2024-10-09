@@ -39,9 +39,9 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
                             return 0;
                         }
                     }
-                    return prevTimer - 1;
+                    return prevTimer - 100;
                 });
-            }, 1000);
+            }, 100);
 
             return destroyInterval;
     }, [initialTime]);
