@@ -1,0 +1,7 @@
+.container {
+    width: 100%;
+}
+
+.progress-bar {
+    transition: width 100ms ease-in-out;
+}
