@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProgressBar.scss';
+import styles from './ProgressBar.module.css';
 
 export default function ProgressBar({percentage, color}: { percentage: number, color: string }): React.JSX.Element {
     return (
