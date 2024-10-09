@@ -3,7 +3,7 @@ import {useTimer} from "../../../../../contexts/timer.context";
 import ProgressBar from "./ProgressBar/ProgressBar.tsx";
 import {TURN_TIME} from "../../../consts.ts";
 
-export type GameStatusProps = ChildProps & { activePlayer: Player, nextPlayer: Player, updatePlayerTurn: () => void };
+export type GameStatusProps = ChildProps & { activePlayer: Player| null, nextPlayer: Player| null, updatePlayerTurn: () => void };
 
 export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} : GameStatusProps): React.JSX.Element {
     const {timer, startCountdown} = useTimer();

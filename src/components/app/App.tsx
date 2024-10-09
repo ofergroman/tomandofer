@@ -1,12 +1,15 @@
 import './App.css'
 import * as React from "react";
-import GameBoard from "./game-board/GameBoard.tsx";
+import {BrowserRouter } from "react-router-dom";
+import {Views} from "../../views/views.tsx";
 
 
 function App(): React.JSX.Element {
-  return <GameBoard className="flex w-full h-full"></GameBoard>;
-
-
+  return (
+      <BrowserRouter basename="/">
+          <Views/>
+      </BrowserRouter>
+  );
 }
 
 export default App
