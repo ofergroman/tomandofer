@@ -4,4 +4,4 @@ export enum GameState {
     Ended,
 }
 
-export const TURN_TIME = 10 * 1000; // 10 seconds
+export const TURN_TIME = 10_000; // 10 seconds
