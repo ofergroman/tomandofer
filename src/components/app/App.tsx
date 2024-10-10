@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Views } from '../../views/views';
@@ -11,4 +11,4 @@ function App(): React.JSX.Element {
   );
 }
 
-export default App
+export default App;

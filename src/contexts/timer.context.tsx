@@ -13,7 +13,7 @@ export const useTimer = () => {
         throw new Error('useTimer must be used within a TimerProvider');
     }
     return context;
-}
+};
 
 export type TimerProviderProps = { children: ReactNode; initialTime: number; }
 
@@ -25,7 +25,7 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
         if(intervalRef.current){
             clearInterval(intervalRef.current);
         }
-    }
+    };
 
     const startCountdown = useCallback(() => {
         destroyInterval();
@@ -34,7 +34,7 @@ export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialT
                 setTimer(prevTimer => {
                     if (prevTimer <= 1) {
                         if (intervalRef.current) {
-                            destroyInterval()
+                            destroyInterval();
                             return 0;
                         }
                     }

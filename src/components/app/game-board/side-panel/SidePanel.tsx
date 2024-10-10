@@ -16,7 +16,7 @@ function SidePanel({className, game, updatePlayerTurn}: SidePanelProps): React.J
             <PlayersList className='flex flex-1 p-5 border-2' players={game.players} activePlayer={game.activePlayer}/>
             </div>
         </TimerProvider>
-    )
+    );
 }
 
 export default SidePanel;

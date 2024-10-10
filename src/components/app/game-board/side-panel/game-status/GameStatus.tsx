@@ -30,5 +30,5 @@ export default function GameStatus({activePlayer, nextPlayer, updatePlayerTurn} 
             <ProgressBar percentage={percentage} color={activePlayer?.color}/>
             <div>Next player: {nextPlayer?.name}</div>
         </div>
-    )
+    );
 }
