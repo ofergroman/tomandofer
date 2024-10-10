@@ -20,8 +20,7 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
         'quotes': [2, 'single', { avoidEscape: true }],
-        'no-multiple-empty-lines':['error',{ max:1 }],
-        'no-duplicate-imports': ['error']
+        'no-multiple-empty-lines':['error',{ max:1 }]
     },
   },
 )
