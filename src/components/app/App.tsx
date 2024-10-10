@@ -1,8 +1,7 @@
 import './App.css'
-import * as React from "react";
-import {BrowserRouter } from "react-router-dom";
-import {Views} from "../../views/views.tsx";
-
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Views } from '../../views/views';
 
 function App(): React.JSX.Element {
   return (

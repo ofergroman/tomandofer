@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from "react";
+import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from 'react';
 
 export type StoryBoardProps = ChildProps & { content: string, updatePlayerTurn: () => void };
 

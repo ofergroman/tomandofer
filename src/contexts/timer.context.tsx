@@ -17,7 +17,6 @@ export const useTimer = () => {
 
 export type TimerProviderProps = { children: ReactNode; initialTime: number; }
 
-
 export const TimerProvider: React.FC<TimerProviderProps> = ({ children, initialTime }) => {
     const [timer, setTimer] = useState(initialTime);
     const intervalRef = useRef<number | null>(null);
