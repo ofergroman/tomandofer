@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from "react";
+import React, {ChangeEvent, useEffect, useMemo, useRef, useState} from 'react';
 
 export type StoryBoardProps = ChildProps & { content: string, updatePlayerTurn: () => void };
 
@@ -15,7 +15,7 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
 
     const submitText = () => {
         if (!activeText) {
-            return
+            return;
         }
         const aggregatedText = `${submitted} ${activeText.trim()}`;
         setActiveText('');
@@ -23,7 +23,7 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
         inputRef?.current?.focus();
         updatePlayerTurn();
 
-    }
+    };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
@@ -34,8 +34,8 @@ export default function StoryBoard({className, content, updatePlayerTurn}: Story
 
     const inputDisabled = useMemo(() => {
         const threeWordsPattern:RegExp = /^\S+ \S+ \S+$/;
-        return !threeWordsPattern.test(activeText)
-    }, [activeText])
+        return !threeWordsPattern.test(activeText);
+    }, [activeText]);
 
     return <div className={className}>
         <div className='flex flex-col h-3/4 w-full items-center'>
